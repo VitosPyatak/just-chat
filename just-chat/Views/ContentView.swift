@@ -9,20 +9,15 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @EnvironmentObject var userSession: UserSession;
+    
     private let chathistoryRepository = ChatHistoryRepository.default
     
     var body: some View {
-        Text("Hail, world!")
-        Button(action: {
-            chathistoryRepository.save(testTextMessage, completion: completionHandler)
-        }) {
-            Text("Save message")
-        }
-    }
-    
-    private func completionHandler(error: Error?) {
-        if (error != nil) {
-            print("Error")
+        if userSession.appUser != nil {
+            Text("Welcome!")
+        } else {
+            LoginView()
         }
     }
 }

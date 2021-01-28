@@ -17,6 +17,11 @@
 		8494FB5225C29615000F13B1 /* just_chatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494FB5125C29615000F13B1 /* just_chatTests.swift */; };
 		8494FB5D25C29615000F13B1 /* just_chatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494FB5C25C29615000F13B1 /* just_chatUITests.swift */; };
 		8494FB6F25C29D2F000F13B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8494FB6E25C29D2F000F13B1 /* GoogleService-Info.plist */; };
+		84BE794325C2C9920094E9A6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE794225C2C9920094E9A6 /* AuthService.swift */; };
+		84BE794925C2C9F30094E9A6 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE794825C2C9F30094E9A6 /* AppUser.swift */; };
+		84BE796125C2CDA60094E9A6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE796025C2CDA60094E9A6 /* UserSession.swift */; };
+		84CA333D25C2D62F00A7FFB4 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA333C25C2D62F00A7FFB4 /* RegisterView.swift */; };
+		84CA334525C2D64700A7FFB4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA334425C2D64700A7FFB4 /* LoginView.swift */; };
 		84DAD3DC25C2AC8100B27BDA /* MessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAD3DB25C2AC8100B27BDA /* MessageProtocol.swift */; };
 		84DAD3F025C2AD7A00B27BDA /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAD3EF25C2AD7A00B27BDA /* TextMessage.swift */; };
 		84DAD3F625C2ADE200B27BDA /* TextMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAD3F525C2ADE200B27BDA /* TextMessageContent.swift */; };
@@ -60,6 +65,11 @@
 		8494FB5C25C29615000F13B1 /* just_chatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = just_chatUITests.swift; sourceTree = "<group>"; };
 		8494FB5E25C29615000F13B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8494FB6E25C29D2F000F13B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84BE794225C2C9920094E9A6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		84BE794825C2C9F30094E9A6 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		84BE796025C2CDA60094E9A6 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		84CA333C25C2D62F00A7FFB4 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		84CA334425C2D64700A7FFB4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		84DAD3DB25C2AC8100B27BDA /* MessageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageProtocol.swift; sourceTree = "<group>"; };
 		84DAD3EF25C2AD7A00B27BDA /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		84DAD3F525C2ADE200B27BDA /* TextMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageContent.swift; sourceTree = "<group>"; };
@@ -120,6 +130,7 @@
 		8494FB3925C29614000F13B1 /* just-chat */ = {
 			isa = PBXGroup;
 			children = (
+				84BE795E25C2CD8B0094E9A6 /* ViewModels */,
 				84DAD45D25C2B3D500B27BDA /* Constants */,
 				84DAD40E25C2B17D00B27BDA /* Repositories */,
 				84DAD3CE25C2AA6B00B27BDA /* Services */,
@@ -165,14 +176,49 @@
 		8494FB6D25C29B66000F13B1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84CA333B25C2D61E00A7FFB4 /* Auth */,
 				8494FB3C25C29614000F13B1 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
+		84BE794725C2C9E70094E9A6 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				84BE794825C2C9F30094E9A6 /* AppUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		84BE795E25C2CD8B0094E9A6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				84BE795F25C2CD980094E9A6 /* User */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		84BE795F25C2CD980094E9A6 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				84BE796025C2CDA60094E9A6 /* UserSession.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		84CA333B25C2D61E00A7FFB4 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				84CA333C25C2D62F00A7FFB4 /* RegisterView.swift */,
+				84CA334425C2D64700A7FFB4 /* LoginView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		84DAD3B425C2A5E600B27BDA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84BE794725C2C9E70094E9A6 /* User */,
 				84DAD3B525C2A5EE00B27BDA /* Message */,
 			);
 			path = Models;
@@ -191,6 +237,7 @@
 		84DAD3CE25C2AA6B00B27BDA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				84BE794225C2C9920094E9A6 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -422,12 +469,17 @@
 				84DAD3F625C2ADE200B27BDA /* TextMessageContent.swift in Sources */,
 				8494FB4425C29615000F13B1 /* Persistence.swift in Sources */,
 				84DAD3DC25C2AC8100B27BDA /* MessageProtocol.swift in Sources */,
+				84CA334525C2D64700A7FFB4 /* LoginView.swift in Sources */,
+				84CA333D25C2D62F00A7FFB4 /* RegisterView.swift in Sources */,
 				84DAD40125C2AF8600B27BDA /* MessageType.swift in Sources */,
 				8494FB3D25C29614000F13B1 /* ContentView.swift in Sources */,
+				84BE794325C2C9920094E9A6 /* AuthService.swift in Sources */,
 				8494FB3B25C29614000F13B1 /* just_chatApp.swift in Sources */,
 				84DAD3F025C2AD7A00B27BDA /* TextMessage.swift in Sources */,
+				84BE794925C2C9F30094E9A6 /* AppUser.swift in Sources */,
 				8494FB4725C29615000F13B1 /* just_chat.xcdatamodeld in Sources */,
 				84DAD46825C2B69F00B27BDA /* ChatHistoryRepository.swift in Sources */,
+				84BE796125C2CDA60094E9A6 /* UserSession.swift in Sources */,
 				84DAD45F25C2B3EA00B27BDA /* FirestoreCollections.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
