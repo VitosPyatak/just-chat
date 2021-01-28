@@ -6,12 +6,16 @@ struct ChatHistoryService {
     
     private var chatHistoryRepository = ChatHistoryRepository.default
     
+    private var snapshotListener: ListenerRegistration?
+    
     private init() {}
     
     public func sendTextMessage(text: String, completion: @escaping (Error?) -> Void) {
         let textMessage = TextMessageBuilder.build(from: text)
         chatHistoryRepository.saveMessage(textMessage, completion: completion)
     }
+    
+    // TODO: Normalize snapshotlisteners registration
     
     public func registerSnapshotListener(onMessageReceived: @escaping (TextMessage?, Error?) -> Void) {
         chatHistoryRepository.registerMessageRecievingListener { snapshot, error in
@@ -24,7 +28,9 @@ struct ChatHistoryService {
     }
     
     public func removeSnaphostListener() {
-        chatHistoryRepository.removeSnapshotListener()
+        if let listener = snapshotListener {
+            chatHistoryRepository.removeSnapshotListener(snapshotListener: listener)
+        }
     }
     
     private func parseReceivingMessage(documentSnap: QueryDocumentSnapshot, onReceived: @escaping (TextMessage?, Error?) -> Void) {

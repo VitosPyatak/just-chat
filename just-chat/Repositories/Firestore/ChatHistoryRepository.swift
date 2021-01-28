@@ -7,9 +7,7 @@ struct ChatHistoryRepository {
     static let `default` = ChatHistoryRepository()
     
     private let collection = Firestore.firestore().collection(FirestoreCollections.chatHistory)
-    
-    private var snapshotListener: ListenerRegistration
-    
+        
     private init() {}
     
     func saveMessage(_ message: TextMessage, completion: @escaping (Error?) -> Void) {
@@ -20,11 +18,11 @@ struct ChatHistoryRepository {
         }
     }
     
-    mutating func registerMessageRecievingListener(snapshotProcessor: @escaping (_ snapshot: QuerySnapshot?, _ error: Error?) -> Void) {
-        snapshotListener = collection.addSnapshotListener(snapshotProcessor)
+    func registerMessageRecievingListener(snapshotProcessor: @escaping (_ snapshot: QuerySnapshot?, _ error: Error?) -> Void) -> ListenerRegistration {
+        collection.addSnapshotListener(snapshotProcessor)
     }
     
-    func removeSnapshotListener() {
+    func removeSnapshotListener(snapshotListener: ListenerRegistration) {
         snapshotListener.remove()
     }
 }
