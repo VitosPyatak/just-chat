@@ -4,10 +4,14 @@ import SwiftUI
 class ChatViewModel: ObservableObject {
     @Published var messages: [TextMessage] = []
     
-    private var chatHistoryRepository = ChatHistoryRepository.default
+    private var chatHistoryService = ChatHistoryService.default
     
     init() {
-        chatHistoryRepository.registerMessageRecievingListener(onMessageRecieved: onMessageReceived)
+        chatHistoryService.registerSnapshotListener(onMessageReceived: onMessageReceived)
+    }
+    
+    deinit {
+        chatHistoryService.removeSnaphostListener()
     }
     
     private func onMessageReceived(message: TextMessage?, error: Error?) {

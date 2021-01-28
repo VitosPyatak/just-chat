@@ -8,6 +8,8 @@ struct ChatHistoryRepository {
     
     private let collection = Firestore.firestore().collection(FirestoreCollections.chatHistory)
     
+    private var snapshotListener: ListenerRegistration
+    
     private init() {}
     
     func saveMessage(_ message: TextMessage, completion: @escaping (Error?) -> Void) {
@@ -18,19 +20,11 @@ struct ChatHistoryRepository {
         }
     }
     
-    func registerMessageRecievingListener(onMessageRecieved: @escaping (_ data: TextMessage?, _ err: Error?) -> Void) {
-        collection.addSnapshotListener { snap, error in
-            if let error = error {
-                return onMessageRecieved(nil, error);
-            }
-            
-            guard let snapshotData = snap else { return }
-            snapshotData.documentChanges.forEach { document in
-                if document.type == .added {
-                    let message = try! document.document.data(as: TextMessage.self)!
-                    onMessageRecieved(message, error)
-                }
-            }
-        }
+    mutating func registerMessageRecievingListener(snapshotProcessor: @escaping (_ snapshot: QuerySnapshot?, _ error: Error?) -> Void) {
+        snapshotListener = collection.addSnapshotListener(snapshotProcessor)
+    }
+    
+    func removeSnapshotListener() {
+        snapshotListener.remove()
     }
 }
