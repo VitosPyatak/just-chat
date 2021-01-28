@@ -5,13 +5,14 @@ struct ChatHistoryService {
     static var `default` = ChatHistoryService()
     
     private var chatHistoryRepository = ChatHistoryRepository.default
+    private var textMessageBuilder = TextMessageBuilder.default
     
     private var snapshotListener: ListenerRegistration?
     
     private init() {}
     
     public func sendTextMessage(text: String, completion: @escaping (Error?) -> Void) {
-        let textMessage = TextMessageBuilder.build(from: text)
+        let textMessage = textMessageBuilder.build(from: text)
         chatHistoryRepository.saveMessage(textMessage, completion: completion)
     }
     
