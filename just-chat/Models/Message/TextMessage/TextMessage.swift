@@ -1,5 +1,7 @@
 import Foundation
 
+// TODO: use @DocumentId decorator so Firebase will assign documentId as message.id
+
 struct TextMessage: Identifiable, Codable {
     var id =  UUID().uuidString
     var type: String

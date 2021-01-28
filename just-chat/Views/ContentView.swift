@@ -15,9 +15,15 @@ struct ContentView: View {
     
     var body: some View {
         if userSession.appUser != nil {
-            Text("Welcome!")
+            ChatView()
         } else {
-            LoginView()
+            Button(action: {
+                userSession.signIn(email: "test@gmail.com", password: "password") { res, error in
+                    print("Success")
+                }
+            }) {
+                Text("Login")
+            }
         }
     }
 }

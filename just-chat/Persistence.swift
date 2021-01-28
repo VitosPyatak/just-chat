@@ -1,12 +1,4 @@
-//
-//  Persistence.swift
-//  just-chat
-//
-//  Created by admin on 28.01.2021.
-//
-
 import CoreData
-import Firebase
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -39,6 +31,5 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        FirebaseApp.configure()
     }
 }
