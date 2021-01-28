@@ -3,19 +3,26 @@ import FirebaseAuth
 
 struct LoginView: View {
     @EnvironmentObject var userSession: UserSession
+    @ObservedObject var loginViewModel = AuthFormViewModel()
     @State var email = ""
     @State var password = ""
     
-    
     var body: some View {
-        Text("Login to account")
-        TextField("Email address", text: $email)
-            .keyboardType(.emailAddress)
-            .autocapitalization(.none)
-        SecureField("Password", text: $password)
-        Button(action: loginToAccount) {
-            Text("Login to account")
+        Form {
+//            TODO: create dynamic rendering
+//            ForEach(loginViewModel.formFields.indices) { fieldIndex in
+//                FormFieldView(formField: getFormField(byIndex: fieldIndex))
+//            }
+            TextField(AuthFormPlaceholders.email, text: $email)
+            SecureField(AuthFormPlaceholders.password, text: $password)
+            
+            Button(action: loginToAccount) {
+                Text(ButtonPlaceholders.login)
+            }
+            
         }
+        .autocapitalization(.none)
+        .disableAutocorrection(true)
     }
     
     private func loginToAccount() {
@@ -23,9 +30,13 @@ struct LoginView: View {
     }
     
     private func onLoginCompletionHandler(result: AuthDataResult?, error: Error?) {
-        if error != nil {
-            print("Failed to login")
+        if let error = error {
+            print(error.localizedDescription)
         }
+    }
+    
+    private func getFormField(byIndex index: Int) -> FormField {
+        loginViewModel.get(byIndex: index)
     }
 }
 

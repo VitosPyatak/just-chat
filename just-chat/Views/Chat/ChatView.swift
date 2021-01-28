@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ChatView: View {
+    @EnvironmentObject var userSession: UserSession
     @ObservedObject var chatViewModel = ChatViewModel()
     @State var currentMessage = ""
     
@@ -26,7 +27,7 @@ struct ChatView: View {
     
     private func onMessageSend() {
         if !currentMessage.isEmpty {
-            chatHistoryService.sendTextMessage(text: $currentMessage.wrappedValue, completion: onMessageSentCompletion)
+            chatHistoryService.sendTextMessage(text: $currentMessage.wrappedValue, and: userSession.appUser!, completion: onMessageSentCompletion)
         }
     }
     

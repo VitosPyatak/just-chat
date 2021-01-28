@@ -6,9 +6,8 @@ struct TextMessageBuilder {
     
     static let `default` = TextMessageBuilder()
     
-    func build(from text: String) -> TextMessage {
+    func build(from text: String, and user: AppUser) -> TextMessage {
         let messageContent = TextMessageContent(text: text)
-        let senderId = userSession.appUser!.id
-        return TextMessage(type: MessageType.text.get(), content: messageContent, senderId: senderId)
+        return TextMessage(type: MessageType.text.get(), content: messageContent, senderId: user.id)
     }
 }

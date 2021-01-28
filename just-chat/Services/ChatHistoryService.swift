@@ -11,8 +11,8 @@ struct ChatHistoryService {
     
     private init() {}
     
-    public func sendTextMessage(text: String, completion: @escaping (Error?) -> Void) {
-        let textMessage = textMessageBuilder.build(from: text)
+    public func sendTextMessage(text: String, and user: AppUser, completion: @escaping (Error?) -> Void) {
+        let textMessage = textMessageBuilder.build(from: text, and: user)
         chatHistoryRepository.saveMessage(textMessage, completion: completion)
     }
     
