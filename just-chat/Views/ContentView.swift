@@ -9,7 +9,13 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @EnvironmentObject var userSession: UserSession;
+    
     var body: some View {
-        Text("Hail, world!")
+        if userSession.appUser != nil {
+            ChatView()
+        } else {
+            LoginView()
+        }
     }
 }

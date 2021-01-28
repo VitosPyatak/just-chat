@@ -1,20 +1,24 @@
-//
-//  just_chatApp.swift
-//  just-chat
-//
-//  Created by admin on 28.01.2021.
-//
-
 import SwiftUI
+import Firebase
 
 @main
 struct just_chatApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            return ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(UserSession())
         }
+    }
+}
+
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
     }
 }
