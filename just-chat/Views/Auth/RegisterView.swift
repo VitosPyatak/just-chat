@@ -33,14 +33,13 @@ struct RegisterView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(width: 300, height: 50)
-                    .background(Color.green)
+                    .background(Color.blue)
                     .cornerRadius(15.0)
             }
             Spacer()
         }
-        .background(
-            LinearGradient(gradient: Gradient(colors: [.blue, .pink]), startPoint: .top, endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all))
+        .background(PageViewData.Colors.firstScreen)
+        .ignoresSafeArea()
     }
     
     private func createAccount() {

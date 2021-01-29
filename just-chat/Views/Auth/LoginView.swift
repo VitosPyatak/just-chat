@@ -49,9 +49,8 @@ struct LoginView: View {
             
             Spacer()
         }
-        .background(
-            LinearGradient(gradient: Gradient(colors: [.pink, .blue]), startPoint: .top, endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all))
+        .background(PageViewData.Colors.thirdScreen)
+        .ignoresSafeArea()
     }
     
     private func loginToAccount() {
