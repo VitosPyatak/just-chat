@@ -9,26 +9,65 @@ struct ChatView: View {
     
     var body: some View {
         VStack {
+            HStack{
+                Text("Global Chat")
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .foregroundColor(.white)
+                
+                Spacer(minLength: 0)
+            }
+            .padding()
+            .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+            .background(PageViewData.Colors.thirdScreen)
             
-            HStack {
-                TextField("type message...", text: $currentMessage)
-                Button(action: onMessageSend) {
-                    Text("Send message")
+            ScrollView{
+                
+                VStack(spacing: 15){
+                    
+                    ForEach(chatViewModel.messages) {msg in
+                        
+                        Text(msg.content.text)
+                        
+                    }
                 }
+                .padding(.vertical)
             }
             
-            ScrollView {
-                ForEach(chatViewModel.messages) { message in
-                    Text(message.content.text)
+            HStack(spacing: 15){
+                    
+                    TextField("Enter Message", text: $currentMessage)
+                        .padding(.horizontal)
+                        .frame(height: 45)
+                        .background(Color.primary.opacity(0.06))
+                        .clipShape(Capsule())
+                    
+                    if currentMessage != "" {
+                        
+                        Button(action: onMessageSend, label: {
+                            
+                            Image(systemName: "paperplane")
+                                .font(.system(size: 22))
+                                .foregroundColor(.white)
+                                .frame(width: 45, height: 45)
+                                .background(Color.gray)
+                                .clipShape(Circle())
+                            
+                        })
+                    }
                 }
-            }
+                .animation(.default)
+                .padding()
+            
         }
+        .ignoresSafeArea()
     }
     
     private func onMessageSend() {
         if !currentMessage.isEmpty {
             chatHistoryService.sendTextMessage(text: $currentMessage.wrappedValue, and: userSession.appUser!, completion: onMessageSentCompletion)
         }
+        currentMessage = ""
     }
     
     private func onMessageSentCompletion(error: Error?) {

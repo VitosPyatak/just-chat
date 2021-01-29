@@ -12,7 +12,10 @@ struct ContentView: View {
     @EnvironmentObject var userSession: UserSession;
     
     var body: some View {
-        
-        OnboardingView()
+        if userSession.appUser != nil {
+            ChatView()
+        } else {
+            LoginView()
+        }
     }
 }
