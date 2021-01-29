@@ -6,6 +6,7 @@ target 'just-chat' do
   # Pods for just-chat
   use_frameworks!
   
+  pod 'ConcentricOnboarding'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore' 
