@@ -8,21 +8,50 @@ struct LoginView: View {
     @State var password = ""
     
     var body: some View {
-        Form {
-//            TODO: create dynamic rendering
-//            ForEach(loginViewModel.formFields.indices) { fieldIndex in
-//                FormFieldView(formField: getFormField(byIndex: fieldIndex))
-//            }
-            TextField(AuthFormPlaceholders.email, text: $email)
-            SecureField(AuthFormPlaceholders.password, text: $password)
+        VStack {
+            Spacer()
+            
+            Text("Enter the chat")
+                .font(.largeTitle).foregroundColor(Color.white)
+                .padding([.top, .bottom], 40)
+            
+            Spacer()
+            
+            VStack(alignment: .leading, spacing: 15) {
+               
+                TextField(AuthFormPlaceholders.email, text: $email)
+                    .padding()
+                    .background(Color.white)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .cornerRadius(20.0)
+                
+                SecureField(AuthFormPlaceholders.password, text: $password)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20.0)
+            }
+                .padding([.leading, .trailing], 27.5)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+           
+            Spacer()
             
             Button(action: loginToAccount) {
                 Text(ButtonPlaceholders.login)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.green)
+                    .cornerRadius(15.0)
             }
             
+            Spacer()
         }
-        .autocapitalization(.none)
-        .disableAutocorrection(true)
+        .background(
+            LinearGradient(gradient: Gradient(colors: [.pink, .blue]), startPoint: .top, endPoint: .bottom)
+            .edgesIgnoringSafeArea(.all))
     }
     
     private func loginToAccount() {

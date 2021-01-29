@@ -39,7 +39,7 @@ struct RegisterView: View {
             Spacer()
         }
         .background(
-            LinearGradient(gradient: Gradient(colors: [.pink, .blue]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [.blue, .pink]), startPoint: .top, endPoint: .bottom)
             .edgesIgnoringSafeArea(.all))
     }
     
