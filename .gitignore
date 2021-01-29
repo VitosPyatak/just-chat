@@ -90,3 +90,5 @@ fastlane/test_output
 iOSInjectionProject/
 
 Pods/
+Podfile.lock
+just-chat.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
