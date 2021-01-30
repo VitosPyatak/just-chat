@@ -12,10 +12,14 @@ struct ContentView: View {
     @EnvironmentObject var userSession: UserSession;
     
     var body: some View {
-        if userSession.appUser != nil {
-            ChatView()
+        if userSession.seenOnboarding ?? false {
+            if userSession.appUser != nil {
+                ChatView()
+            } else {
+                LoginView()
+            }
         } else {
-            LoginView()
+            OnboardingView()
         }
     }
 }

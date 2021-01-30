@@ -5,10 +5,17 @@ import Firebase
 import FirebaseAuth
 
 class UserSession: ObservableObject {
+    let defaults = UserDefaults.standard
+    
     @Published var appUser: AppUser?
+    @Published var seenOnboarding: Bool?
     
     private let authService = AuthService.default
         
+    init() {
+        seenOnboarding = defaults.bool(forKey: UserDefaultsKeys.onboarding)
+    }
+    
     func signIn(email: String, password: String, completion complete: @escaping (AuthDataResult?, Error?) -> Void) {
         authService.signIn(email: email, password: password) { result, error in
             self.onAuthenticationCompletionHandler(result, error)
