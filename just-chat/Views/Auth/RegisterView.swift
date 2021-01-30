@@ -2,9 +2,14 @@ import SwiftUI
 import FirebaseAuth
 
 struct RegisterView: View {
+    @State private var showingImagePicker = false
+    @State private var image: Image?
+    
     @EnvironmentObject var userSession: UserSession
     @State var email = ""
     @State var password = ""
+    @State var inputImage: UIImage?
+
     
     var body: some View {
         VStack {
@@ -13,7 +18,33 @@ struct RegisterView: View {
                 .font(.largeTitle).foregroundColor(Color.white)
                 .padding([.top, .bottom], 40)
             Spacer()
-            VStack(alignment: .leading, spacing: 15) {
+            VStack(alignment: .center, spacing: 15) {
+                
+                VStack {
+                    if image != nil {
+                        image?
+                            .resizable()
+                            .frame(width: 200.0, height: 200.0)
+                            .cornerRadius(100.0)
+                            .scaledToFit()
+                    } else {
+                        Button(action: {
+                            self.showingImagePicker.toggle()
+                        }) {
+                            Text("Select a picture")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(width: 200, height: 200)
+                                .background(Color.purple)
+                                .cornerRadius(100.0)
+                        }
+                    }
+                }.onTapGesture {
+                    self.showingImagePicker.toggle()
+                }
+                
+                
                 TextField("Email address", text: $email)
                     .padding()
                     .background(Color.white)
@@ -28,7 +59,10 @@ struct RegisterView: View {
                 .disableAutocorrection(true)
                 .padding([.leading, .trailing], 27.5)
             Spacer()
-            Button(action: createAccount) {
+            Button(action: {
+                createAccount()
+                uploadToStorage()
+            }) {
                 Text("Create")
                     .font(.headline)
                     .foregroundColor(.white)
@@ -40,6 +74,9 @@ struct RegisterView: View {
             Spacer()
         }
         .background(PageViewData.Colors.firstScreen)
+        .sheet(isPresented: self.$showingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: self.$inputImage)
+        }
         .ignoresSafeArea()
     }
     
@@ -51,6 +88,15 @@ struct RegisterView: View {
         if error != nil {
             print("Error while creating user")
         }
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
+    }
+    
+    func uploadToStorage() {
+        StorageService.default.uploadImage(self.inputImage!, imageName: "user-profile.png")
     }
 }
 

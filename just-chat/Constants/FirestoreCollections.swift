@@ -1,5 +1,6 @@
 import Foundation
 
 enum FirestoreCollections {
-    static var chatHistory = "message-history"
+    static let chatHistory = "message-history"
+    static let userProfile = "user-profile"
 }
