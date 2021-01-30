@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A49FC025C56FCD0052AB04 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A49FBF25C56FCD0052AB04 /* ValidationService.swift */; };
 		6AFE4C076487614CB0EBC80A /* Pods_just_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2161CCB4315443656765C1A3 /* Pods_just_chat.framework */; };
 		8404408625C44CB900D8FFC6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404408525C44CB900D8FFC6 /* OnboardingView.swift */; };
 		8404408C25C44DC800D8FFC6 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404408B25C44DC800D8FFC6 /* PageView.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04A49FBF25C56FCD0052AB04 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		2161CCB4315443656765C1A3 /* Pods_just_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_just_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43905329677C69EC9ACEB90C /* Pods-just-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-just-chat.release.xcconfig"; path = "Target Support Files/Pods-just-chat/Pods-just-chat.release.xcconfig"; sourceTree = "<group>"; };
 		8404408525C44CB900D8FFC6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				84CA337525C3016E00A7FFB4 /* Builders */,
 				84BE794225C2C9920094E9A6 /* AuthService.swift */,
 				84CA336F25C3008600A7FFB4 /* ChatHistoryService.swift */,
+				04A49FBF25C56FCD0052AB04 /* ValidationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				84DAD3DC25C2AC8100B27BDA /* MessageProtocol.swift in Sources */,
 				84CA334525C2D64700A7FFB4 /* LoginView.swift in Sources */,
 				84CA333D25C2D62F00A7FFB4 /* RegisterView.swift in Sources */,
+				04A49FC025C56FCD0052AB04 /* ValidationService.swift in Sources */,
 				84DAD40125C2AF8600B27BDA /* MessageType.swift in Sources */,
 				8494FB3D25C29614000F13B1 /* ContentView.swift in Sources */,
 				84CA337D25C3369900A7FFB4 /* AuthForm.swift in Sources */,

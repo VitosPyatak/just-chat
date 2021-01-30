@@ -9,6 +9,10 @@ class UserSession: ObservableObject {
     
     @Published var appUser: AppUser?
     @Published var seenOnboarding: Bool?
+    @Published var usernameErrorMessage: String?
+    @Published var emailErrorMessage: String?
+    @Published var passwordErrorMessage: String?
+    @Published var confirmationErrorMessage: String?
     
     private let authService = AuthService.default
         
@@ -23,11 +27,23 @@ class UserSession: ObservableObject {
         }
     }
     
-    func singUp(email: String, password: String, completion complete: @escaping (AuthDataResult?, Error?) -> Void) {
-        authService.signUp(email: email, password: password) { result, error in
-            self.onAuthenticationCompletionHandler(result, error)
-            complete(result, error)
+    func singUp(username: String, email: String, password: String, confirmation: String, completion complete: @escaping (AuthDataResult?, Error?) -> Void) {
+        let valid = validateUserData(username: username, email: email, password: password, confirmation: confirmation)
+        if valid {
+            authService.signUp(email: email, password: password) { result, error in
+                self.onAuthenticationCompletionHandler(result, error)
+                complete(result, error)
+            }
         }
+    }
+    
+    private func validateUserData(username: String, email: String, password: String, confirmation: String) -> Bool {
+        usernameErrorMessage = ValidationService.validateUsername(username: username)
+        emailErrorMessage = ValidationService.validateEmail(email: email)
+        passwordErrorMessage = ValidationService.validatePassword(password: password)
+        confirmationErrorMessage = ValidationService.validateConfirmation(password: password, confirmation: confirmation)
+        
+        return usernameErrorMessage == nil || emailErrorMessage == nil || passwordErrorMessage == nil || confirmationErrorMessage == nil
     }
     
     private func signOut(completion complete: @escaping (Error?) -> Void) {
