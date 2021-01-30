@@ -9,7 +9,14 @@ import SwiftUI
 import ConcentricOnboarding
 
 struct OnboardingView: View {
-    let colors: [Color] = [PageViewData.Colors.firstScreen, PageViewData.Colors.secondScreen, PageViewData.Colors.thirdScreen]
+    @EnvironmentObject var userSession: UserSession;
+    let defaults = UserDefaults.standard
+    
+    let colors: [Color] = [
+        PageViewData.Colors.firstScreen,
+        PageViewData.Colors.secondScreen,
+        PageViewData.Colors.thirdScreen
+    ]
     
     let pages: [AnyView] = [
         AnyView(PageViewData.Pages.firstScreen),
@@ -18,7 +25,14 @@ struct OnboardingView: View {
     ]
 
     var body: some View {
-        ConcentricOnboardingView(pages:pages, bgColors: colors)
+        var onboarding = ConcentricOnboardingView(pages:pages, bgColors: colors)
+        
+        onboarding.insteadOfCyclingToFirstPage = {
+            defaults.setValue(true, forKey: UserDefaultsKeys.onboarding)
+            userSession.seenOnboarding = true
+        }
+        
+        return onboarding
     }
 }
 

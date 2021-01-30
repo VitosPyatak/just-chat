@@ -20,6 +20,7 @@
 		8494FB5225C29615000F13B1 /* just_chatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494FB5125C29615000F13B1 /* just_chatTests.swift */; };
 		8494FB5D25C29615000F13B1 /* just_chatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494FB5C25C29615000F13B1 /* just_chatUITests.swift */; };
 		8494FB6F25C29D2F000F13B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8494FB6E25C29D2F000F13B1 /* GoogleService-Info.plist */; };
+		84B20E4725C559E100EA0DFC /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B20E4625C559E100EA0DFC /* UserDefaultsKeys.swift */; };
 		84BE794325C2C9920094E9A6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE794225C2C9920094E9A6 /* AuthService.swift */; };
 		84BE794925C2C9F30094E9A6 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE794825C2C9F30094E9A6 /* AppUser.swift */; };
 		84BE796125C2CDA60094E9A6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE796025C2CDA60094E9A6 /* UserSession.swift */; };
@@ -80,6 +81,7 @@
 		8494FB5C25C29615000F13B1 /* just_chatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = just_chatUITests.swift; sourceTree = "<group>"; };
 		8494FB5E25C29615000F13B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8494FB6E25C29D2F000F13B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84B20E4625C559E100EA0DFC /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		84BE794225C2C9920094E9A6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		84BE794825C2C9F30094E9A6 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		84BE796025C2CDA60094E9A6 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			children = (
 				84DAD45E25C2B3EA00B27BDA /* FirestoreCollections.swift */,
 				84CA338C25C338D300A7FFB4 /* Placeholders.swift */,
+				84B20E4625C559E100EA0DFC /* UserDefaultsKeys.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				84CA339A25C33D9700A7FFB4 /* FormFieldView.swift in Sources */,
 				8404408625C44CB900D8FFC6 /* OnboardingView.swift in Sources */,
 				8494FB4725C29615000F13B1 /* just_chat.xcdatamodeld in Sources */,
+				84B20E4725C559E100EA0DFC /* UserDefaultsKeys.swift in Sources */,
 				84DAD46825C2B69F00B27BDA /* ChatHistoryRepository.swift in Sources */,
 				84BE796125C2CDA60094E9A6 /* UserSession.swift in Sources */,
 				84CA338825C3370700A7FFB4 /* FormFieldType.swift in Sources */,

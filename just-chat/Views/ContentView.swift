@@ -10,9 +10,17 @@ import CoreData
 
 struct ContentView: View {
     @EnvironmentObject var userSession: UserSession;
+    let defaults = UserDefaults.standard
     
     var body: some View {
-        
-        OnboardingView()
+        if userSession.seenOnboarding ?? false {
+            if userSession.appUser != nil {
+                ChatView()
+            } else {
+                LoginView()
+            }
+        } else {
+            OnboardingView()
+        }
     }
 }
