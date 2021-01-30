@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D4902A25C55A76002C09DC /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4902925C55A76002C09DC /* Test.swift */; };
 		6AFE4C076487614CB0EBC80A /* Pods_just_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2161CCB4315443656765C1A3 /* Pods_just_chat.framework */; };
 		8404408625C44CB900D8FFC6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404408525C44CB900D8FFC6 /* OnboardingView.swift */; };
 		8404408C25C44DC800D8FFC6 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404408B25C44DC800D8FFC6 /* PageView.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04D4902925C55A76002C09DC /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		2161CCB4315443656765C1A3 /* Pods_just_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_just_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43905329677C69EC9ACEB90C /* Pods-just-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-just-chat.release.xcconfig"; path = "Target Support Files/Pods-just-chat/Pods-just-chat.release.xcconfig"; sourceTree = "<group>"; };
 		8404408525C44CB900D8FFC6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				84CA336925C2F07400A7FFB4 /* Chat */,
 				84CA333B25C2D61E00A7FFB4 /* Auth */,
 				8494FB3C25C29614000F13B1 /* ContentView.swift */,
+				04D4902925C55A76002C09DC /* Test.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				84CA337725C3018300A7FFB4 /* TextMessageBuilder.swift in Sources */,
 				84CA336525C2EF3300A7FFB4 /* ChatViewModel.swift in Sources */,
 				84BE794925C2C9F30094E9A6 /* AppUser.swift in Sources */,
+				04D4902A25C55A76002C09DC /* Test.swift in Sources */,
 				8404408C25C44DC800D8FFC6 /* PageView.swift in Sources */,
 				84CA336B25C2F08300A7FFB4 /* ChatView.swift in Sources */,
 				84CA339A25C33D9700A7FFB4 /* FormFieldView.swift in Sources */,

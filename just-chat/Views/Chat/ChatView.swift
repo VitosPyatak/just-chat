@@ -4,8 +4,8 @@ struct ChatView: View {
     @EnvironmentObject var userSession: UserSession
     @ObservedObject var chatViewModel = ChatViewModel()
     @State var currentMessage = ""
+    @State var scrolled = false
     
-    private let currentId = "1"
     private let messages = [
         TextMessage(id: UUID().uuidString, type: "text", content: TextMessageContent(text: "Hello!"), senderId: "1"),
         TextMessage(id: UUID().uuidString, type: "text", content: TextMessageContent(text: "Hey"), senderId: "2"),
@@ -38,22 +38,23 @@ struct ChatView: View {
                             
                             ForEach(chatViewModel.messages.sorted(by: { $0.timestamp < $1.timestamp })) { msg in
                                 
-                                return VStack(alignment: user.id == msg.senderId ? .trailing : .leading, spacing: 5, content: {
+                                VStack(spacing: 5, content: {
                                                 
                                     Text(msg.content.text)
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.white)
-                                                        .padding()
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.white)
+                                        .padding()
                                         .background(user.id == msg.senderId ? PageViewData.Colors.thirdScreen : Color.gray)
                                         .clipShape(ChatBubble(myMsg: user.id == msg.senderId))
+                                        .id(msg.id)
                                     
-                                            })
+                                })
                                 .padding(.horizontal)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: user.id == msg.senderId ? .trailing : .leading)
 
                             }
-                            .onChange(of: messages, perform: { value in
-                                
-                                reader.scrollTo(messages.last!.id,anchor: .bottom)
+                            .onChange(of: chatViewModel.messages, perform: { value in
+                                reader.scrollTo(chatViewModel.messages.last!.id, anchor: .bottom)
                             })
                         }
                         .padding(.vertical)
