@@ -6,5 +6,5 @@ enum AuthFormPlaceholders {
 }
 
 enum ButtonPlaceholders {
-    static var login = "Login to account"
+    static var login = "Start"
 }
