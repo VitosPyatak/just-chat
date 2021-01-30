@@ -30,35 +30,35 @@ struct ChatView: View {
             .background(PageViewData.Colors.thirdScreen)
             
             if let user = userSession.appUser {
-                ScrollViewReader{reader in
+                ScrollViewReader { reader in
+                    
+                    ScrollView {
+                        
+                        VStack(spacing: 15) {
+                            
+                            ForEach(chatViewModel.messages.sorted(by: { $0.timestamp < $1.timestamp })) { msg in
                                 
-                                ScrollView{
-                                    
-                                    VStack(spacing: 15){
-                                        
-                                        ForEach(chatViewModel.messages.sorted(by: { $0.timestamp < $1.timestamp })) { msg in
-                                            
-                                            return VStack(alignment: user.id == msg.senderId ? .trailing : .leading, spacing: 5, content: {
-                                                            
-                                                Text(msg.content.text)
-                                                                    .fontWeight(.semibold)
-                                                                    .foregroundColor(.white)
-                                                                    .padding()
-                                                    .background(user.id == msg.senderId ? PageViewData.Colors.thirdScreen : Color.gray)
-                                                    .clipShape(ChatBubble(myMsg: user.id == msg.senderId))
+                                return VStack(alignment: user.id == msg.senderId ? .trailing : .leading, spacing: 5, content: {
                                                 
-                                                        })
-                                            .padding(.horizontal)
+                                    Text(msg.content.text)
+                                                        .fontWeight(.semibold)
+                                                        .foregroundColor(.white)
+                                                        .padding()
+                                        .background(user.id == msg.senderId ? PageViewData.Colors.thirdScreen : Color.gray)
+                                        .clipShape(ChatBubble(myMsg: user.id == msg.senderId))
+                                    
+                                            })
+                                .padding(.horizontal)
 
-                                        }
-                                        .onChange(of: messages, perform: { value in
-                                            
-                                            reader.scrollTo(messages.last!.id,anchor: .bottom)
-                                        })
-                                    }
-                                    .padding(.vertical)
-                                }
                             }
+                            .onChange(of: messages, perform: { value in
+                                
+                                reader.scrollTo(messages.last!.id,anchor: .bottom)
+                            })
+                        }
+                        .padding(.vertical)
+                    }
+                }
             }
             
             
