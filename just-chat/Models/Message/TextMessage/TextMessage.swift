@@ -11,11 +11,13 @@ struct TextMessage: Identifiable, Codable, Equatable {
     var type: String
     var content: TextMessageContent
     var senderId: String
+    var timestamp = NSDate().timeIntervalSince1970
 
     enum CodingKeys: String, CodingKey {
         case id
         case type
         case content
         case senderId
+        case timestamp
     }
 }
