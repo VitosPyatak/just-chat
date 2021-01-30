@@ -1,10 +1,10 @@
 import Foundation
 
 enum AuthFormPlaceholders {
-    static let email = "Enter email"
-    static let password = "Enter password"
+    static var email = "Enter email"
+    static var password = "Enter password"
 }
 
 enum ButtonPlaceholders {
-    static let login = "Start"
+    static var login = "Start"
 }

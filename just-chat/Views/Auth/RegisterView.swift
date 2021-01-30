@@ -2,12 +2,8 @@ import SwiftUI
 import FirebaseAuth
 
 struct RegisterView: View {
-    @State private var showingImagePicker = false
-    @State private var image: Image?
-    
     @EnvironmentObject var userSession: UserSession
     @State var email = ""
-    @State var inputImage: UIImage?
     @ObservedObject var registrationForm = RegistrationViewModel()
     
     var body: some View {
@@ -20,8 +16,9 @@ struct RegisterView: View {
                 .padding([.top, .bottom], 40)
             
             Spacer()
+            
             VStack(alignment: .leading, spacing: 15) {
-                TextField("Email address", text: $email)
+                TextField("Username", text: $registrationForm.username.bound)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(20.0)
@@ -38,13 +35,9 @@ struct RegisterView: View {
                     .padding()
                     .background(Color.white)
                     .cornerRadius(20.0)
-            }
-                .padding([.leading, .trailing], 27.5)
-            Spacer()
-            Button(action: createAccount) {
-                Text("Create")
-                    .font(.headline)
-                    .foregroundColor(.white)
+                    .modifier(WithError(error: findRuleByPropertyName("Password")))
+                
+                SecureField("Password confirmation", text: $registrationForm.passwordConfirmation.bound)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(20.0)
@@ -74,9 +67,6 @@ struct RegisterView: View {
             
         }
         .background(PageViewData.Colors.firstScreen)
-        .sheet(isPresented: self.$showingImagePicker, onDismiss: loadImage) {
-            ImagePicker(image: self.$inputImage)
-        }
         .ignoresSafeArea()
     }
     
@@ -88,15 +78,6 @@ struct RegisterView: View {
         if error != nil {
             print("Error while creating user")
         }
-    }
-    
-    func loadImage() {
-        guard let inputImage = inputImage else { return }
-        image = Image(uiImage: inputImage)
-    }
-    
-    func uploadToStorage() {
-        StorageService.default.uploadImage(self.inputImage!, imageName: "user-profile.png")
     }
     
     private func findRuleByPropertyName(_ propertyName: String) -> BrokenRule? {

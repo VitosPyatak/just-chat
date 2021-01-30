@@ -12,6 +12,5 @@ target 'just-chat' do
   pod 'Firebase/Firestore' 
   pod 'FirebaseFirestoreSwift', '~> 7.0-beta'
   pod 'Firebase/Messaging'
-  pod ‘Firebase/Storage’
 
 end

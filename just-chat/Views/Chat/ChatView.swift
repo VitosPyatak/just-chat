@@ -70,7 +70,6 @@ struct ChatView: View {
                         .padding(.horizontal)
                         .frame(height: 45)
                         .background(Color.primary.opacity(0.06))
-                        .disableAutocorrection(true)
                         .clipShape(Capsule())
                     
                     if currentMessage != "" {
