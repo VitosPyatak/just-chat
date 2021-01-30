@@ -346,6 +346,7 @@ PODS:
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
+  - ValidatedPropertyKit (0.0.5)
 
 DEPENDENCIES:
   - ConcentricOnboarding
@@ -354,6 +355,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - FirebaseFirestoreSwift (~> 7.0-beta)
+  - ValidatedPropertyKit
 
 SPEC REPOS:
   trunk:
@@ -379,6 +381,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - ValidatedPropertyKit
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -403,7 +406,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  ValidatedPropertyKit: 4152a5fe3114f8b3a00fc5990f9125ea038f49a2
 
-PODFILE CHECKSUM: e35fcaa1baa9742ca818928a77f3945a2b6fe5f4
+PODFILE CHECKSUM: c6b41a3ce2b24f4048910880ad090dc3f6d47649
 
 COCOAPODS: 1.10.1
