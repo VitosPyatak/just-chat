@@ -25,6 +25,7 @@ struct RegisterView: View {
                     .background(Color.white)
                     .cornerRadius(20.0)
             }
+                .disableAutocorrection(true)
                 .padding([.leading, .trailing], 27.5)
             Spacer()
             Button(action: createAccount) {
