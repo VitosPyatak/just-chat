@@ -30,16 +30,20 @@ struct ChatView: View {
             .background(PageViewData.Colors.thirdScreen)
             
             if let user = userSession.appUser {
+                
                 ScrollViewReader { reader in
                     
                     ScrollView {
                         
                         VStack(spacing: 15) {
-                            
                             ForEach(chatViewModel.messages.sorted(by: { $0.timestamp < $1.timestamp })) { msg in
-                                
-                                VStack(spacing: 5, content: {
-                                                
+                                VStack(alignment: isMyMessage(from: user, by: msg) ? .trailing : .leading, spacing: 5, content: {
+
+                                    if !isMyMessage(from: user, by: msg), !chatViewModel.isMessageSequencial(message: msg) {
+                                        Text(msg.sender)
+                                    }
+
+
                                     Text(msg.content.text)
                                         .fontWeight(.semibold)
                                         .foregroundColor(.white)
@@ -47,11 +51,12 @@ struct ChatView: View {
                                         .background(user.id == msg.senderId ? PageViewData.Colors.thirdScreen : Color.gray)
                                         .clipShape(ChatBubble(myMsg: user.id == msg.senderId))
                                         .id(msg.id)
-                                    
+
                                 })
                                 .padding(.horizontal)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: user.id == msg.senderId ? .trailing : .leading)
-
+                            
+                                                    
                             }
                             .onChange(of: chatViewModel.messages, perform: { value in
                                 reader.scrollTo(chatViewModel.messages.last!.id, anchor: .bottom)
@@ -106,12 +111,15 @@ struct ChatView: View {
             print(error.localizedDescription)
         }
     }
+    
+    private func isMyMessage(from user: AppUser, by message: TextMessage) -> Bool {
+        user.id == message.senderId
+    }
 }
 
 struct ChatBubble: Shape {
-
-    var myMsg : Bool
     
+    var myMsg : Bool
     func path(in rect: CGRect) -> Path {
         
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.topLeft,.topRight,myMsg ? .bottomLeft : .bottomRight], cornerRadii: CGSize(width: 15, height: 15))

@@ -14,12 +14,12 @@ struct ContentView: View {
     var body: some View {
         if userSession.seenOnboarding ?? false {
             if userSession.appUser != nil {
-                ChatView()
+              ChatView()
             } else {
                 LoginView()
             }
         } else {
-            OnboardingView()
+             OnboardingView()
         }
     }
 }

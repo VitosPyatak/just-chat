@@ -56,6 +56,11 @@ struct LoginView: View {
             }
             .background(PageViewData.Colors.thirdScreen)
             .ignoresSafeArea()
+            .onAppear {
+                userSession.signIn(email: "vic@gmail.com", password: "password") { res, err in
+                    
+                }
+            }
         }
     }
     
