@@ -10,7 +10,6 @@ import CoreData
 
 struct ContentView: View {
     @EnvironmentObject var userSession: UserSession;
-    let defaults = UserDefaults.standard
     
     var body: some View {
         if userSession.seenOnboarding ?? false {
