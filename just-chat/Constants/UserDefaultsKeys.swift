@@ -9,4 +9,5 @@ import Foundation
 
 enum UserDefaultsKeys {
     static let onboarding = "#onboarding"
+    static let userProfile = "#userProfile"
 }

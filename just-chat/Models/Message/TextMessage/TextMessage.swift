@@ -4,20 +4,20 @@ import Foundation
 
 struct TextMessage: Identifiable, Codable, Equatable {
     static func == (lhs: TextMessage, rhs: TextMessage) -> Bool {
-        lhs.content.text == rhs.content.text && lhs.senderId == rhs.senderId
+        lhs.content.text == rhs.content.text && lhs.sender == rhs.sender
     }
     
     var id =  UUID().uuidString
     var type: String
     var content: TextMessageContent
-    var senderId: String
+    var sender: UserProfile
     var timestamp = NSDate().timeIntervalSince1970
 
     enum CodingKeys: String, CodingKey {
         case id
         case type
         case content
-        case senderId
+        case sender
         case timestamp
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ValidatedPropertyKit
 
 extension Validation where Value == String {
     

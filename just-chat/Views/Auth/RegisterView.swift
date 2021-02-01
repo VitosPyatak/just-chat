@@ -3,8 +3,11 @@ import FirebaseAuth
 
 struct RegisterView: View {
     @EnvironmentObject var userSession: UserSession
-    @State var email = ""
     @ObservedObject var registrationForm = RegistrationViewModel()
+    
+    @State private var showingImagePicker = false
+    @State private var image: Image?
+    @State var inputImage: UIImage?
     
     var body: some View {
         VStack {
@@ -16,6 +19,30 @@ struct RegisterView: View {
                 .padding([.top, .bottom], 40)
             
             Spacer()
+            
+            VStack {
+                if image != nil {
+                    image?
+                        .resizable()
+                        .frame(width: 200.0, height: 200.0)
+                        .cornerRadius(100.0)
+                        .scaledToFit()
+                } else {
+                    Button(action: {
+                        self.showingImagePicker.toggle()
+                    }) {
+                        Text("Select a picture")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 200, height: 200)
+                            .background(Color.purple)
+                            .cornerRadius(100.0)
+                    }
+                }
+            }.onTapGesture {
+                self.showingImagePicker.toggle()
+            }
             
             VStack(alignment: .leading, spacing: 15) {
                 TextField("Username", text: $registrationForm.username.bound)
@@ -53,7 +80,7 @@ struct RegisterView: View {
             Button("Create") {
                 withAnimation {
                     if (self.registrationForm.validate()) {
-                        self.registrationForm.register(withImage: "")
+                        processSignUp()
                     }
                 }
             }.font(.headline)
@@ -68,16 +95,34 @@ struct RegisterView: View {
         }
         .background(PageViewData.Colors.firstScreen)
         .ignoresSafeArea()
+        .sheet(isPresented: self.$showingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: self.$inputImage)
+        }
     }
     
-    private func createAccount() {
-        //        userSession.singUp(username: $username.wrappedValue, email: $email.wrappedValue, password: $password.wrappedValue, confirmation: $confirmation.wrappedValue, completion: onCreateCompletionHandler)
+    
+    private func processSignUp() {
+        let imageUrl = uploadToStorage()
+        createAccount(imageUrl)
+    }
+    
+    private func createAccount(_ imageUrl: String) {
+        userSession.singUp(form: self.registrationForm, imageUrl: imageUrl, completion: onCreateCompletionHandler)
     }
     
     private func onCreateCompletionHandler(result: AuthDataResult?, error: Error?) {
         if error != nil {
             print("Error while creating user")
         }
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
+    }
+    
+    func uploadToStorage() -> String {
+        return StorageService.default.uploadImage(self.inputImage!, imageName: self.registrationForm.username.bound + "-profile-image.png")
     }
     
     private func findRuleByPropertyName(_ propertyName: String) -> BrokenRule? {

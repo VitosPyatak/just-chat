@@ -11,12 +11,10 @@ struct ChatHistoryService {
     
     private init() {}
     
-    public func sendTextMessage(text: String, and user: AppUser, completion: @escaping (Error?) -> Void) {
-        let textMessage = textMessageBuilder.build(from: text, and: user)
+    public func sendTextMessage(text: String, and userProfile: UserProfile, completion: @escaping (Error?) -> Void) {
+        let textMessage = textMessageBuilder.build(from: text, and: userProfile)
         chatHistoryRepository.saveMessage(textMessage, completion: completion)
     }
-    
-    // TODO: Normalize snapshotlisteners registration
     
     public func registerSnapshotListener(onMessageReceived: @escaping (TextMessage?, Error?) -> Void) {
         chatHistoryRepository.registerMessageRecievingListener { snapshot, error in

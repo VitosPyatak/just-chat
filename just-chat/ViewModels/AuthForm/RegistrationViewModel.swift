@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ValidatedPropertyKit
 
 class RegistrationViewModel: ObservableObject {
     

@@ -9,15 +9,17 @@ class UserSession: ObservableObject {
     
     @Published var appUser: AppUser?
     @Published var seenOnboarding: Bool?
+    @Published var userProfile: UserProfile?
     @Published var usernameErrorMessage: String?
     @Published var emailErrorMessage: String?
     @Published var passwordErrorMessage: String?
     @Published var confirmationErrorMessage: String?
     
     private let authService = AuthService.default
-        
+    
     init() {
         seenOnboarding = defaults.bool(forKey: UserDefaultsKeys.onboarding)
+        userProfile = UserProfileService.getUserProfile()
     }
     
     func signIn(email: String, password: String, completion complete: @escaping (AuthDataResult?, Error?) -> Void) {
@@ -27,14 +29,20 @@ class UserSession: ObservableObject {
         }
     }
     
-    func singUp(username: String, email: String, password: String, confirmation: String, completion complete: @escaping (AuthDataResult?, Error?) -> Void) {
-        let valid = validateUserData(username: username, email: email, password: password, confirmation: confirmation)
-        if valid {
-            authService.signUp(email: email, password: password) { result, error in
-                self.onAuthenticationCompletionHandler(result, error)
-                complete(result, error)
+    func singUp(form: RegistrationViewModel, imageUrl: String, completion complete: @escaping (AuthDataResult?, Error?) -> Void) {
+        authService.signUp(email: form.email.bound, password: form.email.bound) { result, error in
+            if let result = result {
+                self.saveUserProfile(username: form.username.bound, userId: result.user.uid, imageUrl: imageUrl)
             }
+            self.onAuthenticationCompletionHandler(result, error)
+            complete(result, error)
         }
+    }
+    
+    private func saveUserProfile(username: String, userId: String, imageUrl: String) {
+        let userProfile = UserProfile(username: username, imageUrl: imageUrl, userId: userId)
+        UserProfileService.saveUserProfile(UserProfile(username: username, imageUrl: imageUrl, userId: userId))
+        self.userProfile = userProfile
     }
     
     private func validateUserData(username: String, email: String, password: String, confirmation: String) -> Bool {
